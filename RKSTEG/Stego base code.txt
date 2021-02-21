@@ -1,0 +1,49 @@
+def convertToBinaryList(mssg):
+    binlist = []
+    for x in mssg:
+        binlist.append('{0:07b}'.format(ord(x), 'b'))
+    return binlist
+
+def encode(binlist):
+    binEncodedstr = ""
+    for i in range(0, len(binlist)):
+        for x in binlist[i]:
+            if x == '1':
+                binEncodedstr += " "
+            elif x == '0':
+                binEncodedstr += "	"
+    binEncodedstr += ""
+    return binEncodedstr
+
+def decode(encodedstr):
+    binstr = ""
+    i = 0
+    decodedlist = []
+    for x in encodedstr:
+        if x == " ":
+            binstr += "1"
+        elif x == "	":
+            binstr += "0"
+        i = i + 1
+        if i % 7 == 0:
+            decodedlist.append(binstr)
+            binstr = ""
+    return decodedlist
+
+
+def convertBackToString(binlist):
+    messg = ""
+    for i in range(0, len(binlist)):
+        messg = messg + chr(int(binlist[i], 2))
+    return messg
+
+
+s = raw_input()
+bs = convertToBinaryList(s)
+ens = encode(bs)
+des = decode(ens)
+ans = convertBackToString(des)
+print(ans)
+
+
+Psgi - scmrc143
